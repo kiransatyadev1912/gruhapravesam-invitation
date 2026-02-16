@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>శుభ గృహప్రవేశ ఆహ్వాన పత్రిక</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
+
+:root{
+  --gold:#D4AF37;
+  --orange:#FF6B35;
+  --deep:#7A3B14;
+  --red:#C0392B;
+  --blue:#2E6BD9;
+  --green:#1F7A1F;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+@page{ size:A4; margin:0; }
+
+body{
+  font-family:'Noto Sans Telugu', sans-serif;
+  background: linear-gradient(135deg,#FFD700,#FFA500);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;   /* ✅ mobile friendly */
+  padding:14px;
+  min-height:100vh;
+}
+
+/* ✅ Default: mobile-first (auto height) */
+.page{
+  width: min(210mm, 100%);
+  height: auto;                 /* ✅ show full content on mobile */
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+  padding:22px 16px;            /* ✅ mobile padding */
+  position:relative;
+  overflow:visible;             /* ✅ do not cut content */
+}
+
+/* Decorative Borders */
+.page::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:3px solid var(--orange);
+  border-radius:15px;
+  pointer-events:none;
+}
+
+.page::after{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  pointer-events:none;
+}
+
+.top{text-align:center;}
+
+.mantra{
+  font-size:16px;
+  font-weight:800;
+  color:var(--deep);
+  margin-bottom:6px;
+}
+
+.title{
+  font-size:22px;
+  font-weight:900;
+  color:var(--red);
+  margin:10px 0 6px;
+}
+
+.subtitle{
+  font-size:14px;
+  color:#6b3a1c;
+  font-weight:700;
+}
+
+.section{
+  margin-top:12px;
+  font-size:14.5px;
+  line-height:1.8;
+  text-align:center;
+  color:#333;
+}
+
+.highlight{
+  margin:12px auto;
+  padding:12px;
+  border-left:6px solid var(--orange);
+  background:#fff3e0;
+  border-radius:12px;
+  width:95%;
+}
+
+.muhurta{
+  font-weight:900;
+  font-size:16px;
+  color:#b07d00;
+  display:block;
+  margin-top:6px;
+}
+
+.invite{
+  margin-top:10px;
+  font-weight:800;
+  color:var(--red);
+  font-style:italic;
+  text-align:center;
+}
+
+.host{
+  margin-top:12px;
+  padding:12px;
+  background:#f0f8ff;
+  border:2px solid var(--blue);
+  border-radius:12px;
+  text-align:center;
+}
+
+.host span{
+  display:block;
+  font-weight:900;
+  font-size:15.5px;
+  color:var(--blue);
+  margin:6px 0;
+}
+
+.venue{
+  margin-top:12px;
+  padding:10px;
+  background:#e6ffe6;
+  border:2px solid var(--green);
+  border-radius:12px;
+  text-align:center;
+  font-weight:900;
+  color:var(--green);
+  font-size:14.5px;
+  line-height:1.6;
+}
+
+.actions{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:2;
+}
+
+.btn{
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:900;
+  font-size:14px;
+  color:#fff;
+  text-decoration:none;
+  display:inline-block;
+  box-shadow:0 8px 16px rgba(0,0,0,0.15);
+  cursor:pointer;
+  border:none;
+}
+
+.orange{background:var(--orange);}
+.blue{background:var(--blue);}
+.gray{background:#6c757d;}
+
+.blessing{
+  margin-top:14px;
+  text-align:center;
+  font-size:16px;
+  font-weight:900;
+  color:var(--deep);
+  font-style:italic;
+  padding-bottom:10px;
+}
+
+/* ✅ PRINT/PDF MODE: EXACT A4 ONE PAGE */
+@media print{
+  body{background:#fff;padding:0;align-items:center;}
+  .page{
+    width:210mm;
+    height:297mm;           /* ✅ A4 fixed */
+    padding:16mm 12mm;      /* ✅ tighter for print */
+    border-radius:0;
+    box-shadow:none;
+    overflow:hidden;        /* ✅ ensure one page */
+  }
+  .page::before{ inset:10mm; }
+  .page::after{ inset:12mm; }
+  .actions{ display:none; } /* ✅ hide buttons in PDF */
+}
+
+/* ✅ Desktop/Large screens: keep it looking like a card */
+@media (min-width: 768px){
+  body{align-items:center;}
+  .page{
+    padding:16mm 12mm;
+  }
+  .mantra{font-size:18px;}
+  .title{font-size:26px;}
+  .subtitle{font-size:16px;}
+  .section{font-size:15.5px;}
+  .muhurta{font-size:18px;}
+  .host span{font-size:17px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="top">
+    <div class="mantra">🕉 శ్రీ మహాగణపతయే నమః 🕉</div>
+    <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
+
+    <div class="title">🌺 శుభ గృహప్రవేశ మహోత్సవ ఆహ్వాన పత్రిక 🌺</div>
+    <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
+  </div>
+
+  <div class="section">
+    స్వస్తి శ్రీ చాంద్రమాన శోభకృత్ నామ సంవత్సరే<br>
+    మాఘ మాసే శుక్ల పక్షే శుభ తిథౌ<br>
+    మృగశిర నక్షత్ర యుక్త ధనుస్సు లగ్నమునందు
+  </div>
+
+  <div class="highlight section">
+    అనగా: క్రీస్తుశకం <b style="color:var(--red)">2026 ఫిబ్రవరి 25</b> బుధవారము<br>
+    (తెల్లవారుజాము – <b style="color:var(--red)">26</b> గురువారము)
+    <span class="muhurta">ఉదయం 3:16 AM శుభ ముహూర్తము</span>
+  </div>
+
+  <div class="section">
+    విజయవాడ, <b style="color:var(--orange)">అయ్యప్పనగర్</b> లోని మా నూతన సద్గృహమునందు<br>
+    వేదోక్త విధానములతో భక్తిశ్రద్ధలతో గృహప్రవేశము నిర్వహిస్తున్నాము.
+  </div>
+
+  <div class="invite">మీ కుటుంబ సమేతులారా వచ్చి ఆశీర్వదించండి 🙏</div>
+
+  <div class="host">
+    <span>శ్రీ నల్లమోతు వెంకట శ్రీనివాసరావు గారు</span>
+    <span>శ్రీమతి రాజా రాజేశ్వరి గారు</span>
+    కుటుంబ సభ్యులతో సహా
+  </div>
+
+  <div class="venue">
+    📍 A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada
+  </div>
+
+  <div class="actions">
+    <a class="btn orange" href="tel:+919701803169">📞 కాల్ చేయండి</a>
+    <a class="btn blue" href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw" target="_blank">🗺️ మ్యాప్‌లో చూడండి</a>
+    <button class="btn gray" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
+  </div>
+
+  <div class="blessing">
+    🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశీర్వాదమే మా శ్రేయస్సు 🌸
+  </div>
+
+</div>
+
+<script>
+function copyAddress(){
+  const address="A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
+  navigator.clipboard.writeText(address).then(function(){
+    alert("✅ అడ్రస్ కాపీ అయ్యింది!");
+  }).catch(function(){
+    alert("⚠️ Copy not supported. Please copy manually.");
+  });
+}
+</script>
+
+</body>
+</html>
