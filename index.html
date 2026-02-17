@@ -15,7 +15,7 @@
   --red:#C0392B;
   --blue:#2E6BD9;
   --green:#1F7A1F;
-  --ink:#2b2b2b;
+
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -31,28 +31,25 @@ body{
   min-height:100vh;
 }
 
-/* ✅ Mobile-first (show full content) */
+/* PAGE */
 .page{
   width:min(210mm, 100%);
-  height:auto;
-  background: linear-gradient(0deg, rgba(255,255,255,0.96), rgba(255,255,255,0.96));
+  background: rgba(255,255,255,0.96);
   border-radius:20px;
   box-shadow:0 20px 60px rgba(0,0,0,0.25);
   padding:22px 16px;
   position:relative;
-  overflow:visible;
-  z-index:1;
+  overflow:hidden;
 }
 
-/* ✅ Decorative borders must not block clicks */
+/* Decorative Borders */
 .page::before{
   content:"";
   position:absolute;
   inset:14px;
   border:3px solid var(--orange);
   border-radius:15px;
-  pointer-events:none;
-  z-index:0;
+
 }
 .page::after{
   content:"";
@@ -60,29 +57,49 @@ body{
   inset:20px;
   border:2px solid var(--gold);
   border-radius:12px;
-  pointer-events:none;
-  z-index:0;
 }
 
-.top{text-align:center; position:relative; z-index:2;}
+/* 🌸 CSS Floral Corners */
+.corner{
+  position:absolute;
+  width:90px;
+  height:90px;
+  pointer-events:none;
+}
+
+.corner::before{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  background:radial-gradient(circle at center, #FFD700 0%, #FF6B35 80%);
+  border-radius:50%;
+}
+
+.corner::after{
+  content:"";
+  position:absolute;
+  width:35px;
+  height:35px;
+  background:#C0392B;
+  border-radius:50%;
+  top:17px;
+  left:17px;
+}
+
+.corner.tl{ top:-25px; left:-25px; }
+.corner.tr{ top:-25px; right:-25px; transform:rotate(90deg); }
+.corner.bl{ bottom:-25px; left:-25px; transform:rotate(-90deg); }
+.corner.br{ bottom:-25px; right:-25px; transform:rotate(180deg); }
+
+.top{text-align:center; margin-top:20px;}
 
 .mantra{
   font-size:16px;
   font-weight:800;
   color:var(--deep);
   margin-bottom:6px;
-}
 
-.sloka{
-  margin:10px auto 6px;
-  width:95%;
-  font-size:13.5px;
-  line-height:1.7;
-  color:#4b2a15;
-  background: linear-gradient(135deg,#fff7da,#ffe7b8);
-  border-left:6px solid var(--gold);
-  border-radius:12px;
-  padding:10px 12px;
 }
 
 .title{
@@ -100,24 +117,22 @@ body{
 }
 
 .section{
-  margin-top:12px;
+  margin-top:14px;
   font-size:14.5px;
   line-height:1.85;
   text-align:center;
   color:#333;
-  position:relative;
-  z-index:2;
+
 }
 
 .highlight{
-  margin:12px auto;
-  padding:12px 12px;
+  margin:14px auto;
+  padding:12px;
   border-left:6px solid var(--orange);
-  background: #fff3e0;
+  background:#fff3e0;
   border-radius:12px;
   width:95%;
-  position:relative;
-  z-index:2;
+
 }
 
 .muhurta{
@@ -128,26 +143,56 @@ body{
   margin-top:6px;
 }
 
+.vindu-section{
+  margin:18px auto;
+  padding:16px;
+  width:85%;
+  background:linear-gradient(135deg,#fff8e6,#ffe0b3);
+  border-left:6px solid #FF6B35;
+  border-right:6px solid #FF6B35;
+  border-radius:14px;
+  text-align:center;
+}
+
+.vindu-heading{
+  font-size:18px;
+  font-weight:900;
+  color:#C0392B;
+}
+
+.vindu-time{
+  font-size:17px;
+  font-weight:800;
+  color:#8B0000;
+}
+
 .invite{
-  margin-top:10px;
+  margin-top:12px;
   font-weight:800;
   color:var(--red);
   font-style:italic;
   text-align:center;
-  position:relative;
-  z-index:2;
+
 }
 
+
 .host{
-  margin-top:12px;
+  margin-top:14px;
   padding:12px;
   background:#f0f8ff;
   border:2px solid var(--blue);
   border-radius:12px;
   text-align:center;
-  position:relative;
-  z-index:2;
 }
+
+.host-heading{
+  font-size:18px;
+  font-weight:900;
+  color:#1c4fb8;
+  margin-bottom:8px;
+  text-decoration:underline;
+}
+
 .host span{
   display:block;
   font-weight:900;
@@ -157,7 +202,7 @@ body{
 }
 
 .venue{
-  margin-top:12px;
+  margin-top:14px;
   padding:10px;
   background:#e6ffe6;
   border:2px solid var(--green);
@@ -167,8 +212,7 @@ body{
   color:var(--green);
   font-size:14.5px;
   line-height:1.6;
-  position:relative;
-  z-index:2;
+
 }
 
 .actions{
@@ -177,9 +221,10 @@ body{
   justify-content:center;
   gap:10px;
   flex-wrap:wrap;
-  position:relative;
-  z-index:3; /* ✅ buttons on top */
+
 }
+
+
 
 .btn{
   padding:10px 14px;
@@ -188,98 +233,38 @@ body{
   font-size:14px;
   color:#fff;
   text-decoration:none;
-  display:inline-block;
-  box-shadow:0 8px 16px rgba(0,0,0,0.15);
-  cursor:pointer;
   border:none;
+  cursor:pointer;
+
 }
 
 .orange{background:var(--orange);}
 .blue{background:var(--blue);}
 .gray{background:#6c757d;}
 
-.note{
-  margin-top:10px;
-  text-align:center;
-  font-size:12.8px;
-  color:#555;
-  font-weight:700;
-  position:relative;
-  z-index:2;
-}
+
 
 .blessing{
-  margin-top:14px;
+  margin-top:16px;
   text-align:center;
   font-size:16px;
   font-weight:900;
   color:var(--deep);
   font-style:italic;
-  padding-bottom:10px;
-  position:relative;
-  z-index:2;
+
 }
 
-/* ✅ PRINT/PDF MODE: exact A4 one page */
+/* Print */
 @media print{
-  body{background:#fff;padding:0;align-items:center;}
+  body{background:#fff;padding:0;}
   .page{
     width:210mm;
     height:297mm;
     padding:16mm 12mm;
     border-radius:0;
     box-shadow:none;
-    overflow:hidden;
   }
-  .page::before{ inset:10mm; }
-  .page::after{ inset:12mm; }
-  .actions{ display:none; } /* hide buttons in PDF */
-}
-
-/* Desktop tune */
-@media (min-width: 768px){
-  body{align-items:center;}
-  .page{ padding:16mm 12mm; }
-  .mantra{ font-size:18px; }
-  .title{ font-size:26px; }
-  .subtitle{ font-size:16px; }
-  .section{ font-size:15.5px; }
-  .muhurta{ font-size:18px; }
-  .host span{ font-size:17px; }
-  .sloka{ font-size:14px; }
-}
-.vindu-section{
-  margin:18px auto;
-  padding:16px;
-  width:85%;
-  background: linear-gradient(135deg,#fff8e6,#ffe0b3);
-  border-left:6px solid #FF6B35;
-  border-right:6px solid #FF6B35;
-  border-radius:14px;
-  text-align:center;
-  position:relative;
-  z-index:2;
-  box-shadow:0 6px 20px rgba(0,0,0,0.08);
-}
-
-.vindu-heading{
-  font-size:18px;
-  font-weight:900;
-  color:#C0392B;
-  margin-bottom:8px;
-}
-
-.vindu-time{
-  font-size:17px;
-  font-weight:800;
-  color:#8B0000;
-}
-.host-heading{
-  font-size:18px;
-  font-weight:900;
-  color:#1c4fb8;
-  margin-bottom:8px;
-  text-decoration: underline;
+  .actions{ display:none; }
 }
 
 
@@ -287,14 +272,21 @@ body{
 </head>
 
 <body>
+
 <div class="page" id="card">
+
+  <!-- 🌸 CSS Corners -->
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
 
   <div class="top">
     <div class="mantra">🕉 శ్రీ మహాగణపతయే నమః 🕉</div>
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
 
-    <!-- From your PDF: includes Suprabhatam line -->
 
+    
     <div class="title">🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺</div>
     <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
   </div>
@@ -305,63 +297,52 @@ body{
     మృగశిర నక్షత్రయుక్త ధనుస్సు లగ్నము నందు
   </div>
 
-  <!-- Updated dates as per PDF -->
+
   <div class="highlight section">
-    <b>అనగా:</b>శుభ తిథి <b style="color:var(--red)">25-02-2026</b> బుధవారము<br>
-    (తెల్లవారుజామున / తెల్లవారితే <b style="color:var(--red)">26-02-2026</b> గురువారము)
+    <b>అనగా:</b> శుభ తిథి <b style="color:#C0392B">25-02-2026</b> బుధవారము<br>
+    (తెల్లవారితే <b style="color:#C0392B">26-02-2026</b> గురువారము)
     <span class="muhurta">శుభ ముహూర్తము: ఉ. గం. 03:16</span>
-    
-</span>
+
 
   </div>
-  
-<!-- 🍽️ Vindu Section -->
-<div class="vindu-section">
-  <div class="vindu-heading">🍽️ విందు🍽️</div>
-  <div class="vindu-date">తేదీ: 26-02-2026 (గురువారము)</div>
-  <div class="vindu-time">మ. 12:00 గం.</div>
-</div>
 
-
+  <div class="vindu-section">
+    <div class="vindu-heading">🍽️ విందు 🍽️</div>
+    <div>తేదీ: 26-02-2026 (గురువారము)</div>
+    <div class="vindu-time">మ. 12:00 గం.</div>
+  </div>
 
   <div class="section">
-    విజయవాడ – <b style="color:var(--orange)">అయ్యప్పనగర్</b> లోని<br>
-    మా నూతన స్వగృహమునందు <b style="color:#8B0000;">వేదోక్త విధానములతో భక్తిశ్రద్ధలతో</b><br>
-    గృహప్రవేశ కార్యక్రమము నిర్వహించుటకు దైవానుగ్రహముతో ఏర్పాట్లు చేసియున్నాము.
+    విజయవాడ – అయ్యప్పనగర్ లోని మా నూతన స్వగృహమునందు వేదోక్త విధానములతో గృహప్రవేశ కార్యక్రమము నిర్వహించుటకు ఏర్పాట్లు చేసియున్నాము.
   </div>
 
   <div class="invite">మీ కుటుంబ సమేతంగా వచ్చి ఆశీర్వదించండి 🙏</div>
 
   <div class="host">
-  <div class="host-heading">ఆహ్వానించువారు</div>
+    <div class="host-heading">ఆహ్వానించువారు</div>
+    <span>శ్రీ నల్లమోతు వెంకట శ్రీనివాసరావు</span>
+    <span>శ్రీమతి శ్రీ రాజ రాజేశ్వరి</span>
+    మరియు కుటుంబ సభ్యులు
+  </div>
 
-  <span>శ్రీ నల్లమోతు వెంకట శ్రీనివాసరావు</span>
-  <span>శ్రీమతి శ్రీ రాజ రాజేశ్వరి</span>
-  మరియు కుటుంబ సభ్యులు
-</div>
 
 
-  <!-- Updated full address -->
   <div class="venue">
     📍 A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada
   </div>
 
-  <!-- Clickable actions (no WhatsApp) -->
+
   <div class="actions">
     <a class="btn orange" href="tel:+919701803169">📞 కాల్ చేయండి</a>
-    <a class="btn blue" href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw" target="_blank" rel="noopener">🗺️ మ్యాప్‌లో చూడండి</a>
-    <button class="btn gray" type="button" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
+    <a class="btn blue" href="https://maps.app.goo.gl/">🗺️ మ్యాప్‌లో చూడండి</a>
+    <button class="btn gray" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
   </div>
 
- 
 
   <div class="blessing">
     🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశీర్వాదమే మా శ్రేయస్సు 🌸
   </div>
-  
- <div class="note">
-    మంగళం మహత్ 🙏
-  </div>
+
 </div>
 
 <script>
@@ -369,10 +350,9 @@ function copyAddress(){
   const address = "A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
   navigator.clipboard.writeText(address).then(() => {
     alert("✅ అడ్రస్ కాపీ అయ్యింది!");
-  }).catch(() => {
-    // fallback if clipboard blocked
-    prompt("Copy this address:", address);
+
   });
+
 }
 </script>
 
