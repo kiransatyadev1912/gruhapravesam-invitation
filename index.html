@@ -6,11 +6,9 @@
 <title>శుభ గృహప్రవేశ ఆహ్వాన పత్రిక</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
 
 :root{
-  --leaf:#18b318;
-  --leaf2:#0a8f0a;
   --gold:#D4AF37;
   --orange:#FF6B35;
   --deep:#7A3B14;
@@ -37,8 +35,8 @@ body{
 .page{
   width:min(210mm, 100%);
   height:auto;
-  background: linear-gradient(0deg, rgba(255,255,255,0.97), rgba(255,255,255,0.97));
-  border-radius:18px;
+  background: linear-gradient(0deg, rgba(255,255,255,0.96), rgba(255,255,255,0.96));
+  border-radius:20px;
   box-shadow:0 20px 60px rgba(0,0,0,0.25);
   padding:22px 16px;
   position:relative;
@@ -46,43 +44,25 @@ body{
   z-index:1;
 }
 
-/* ✅ GREEN LEAF BORDER (matches PDF vibe) */
+/* ✅ Decorative borders must not block clicks */
 .page::before{
   content:"";
   position:absolute;
-  inset:10px;
-  border: 18px solid transparent;
-  border-image-slice: 30;
-  border-image-repeat: round;
-  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Crect width='140' height='140' fill='white'/%3E%3Cg fill='%2318b318'%3E%3Cpath d='M24 12c10 3 18 11 21 21-10-3-18-11-21-21z'/%3E%3Cpath d='M12 24c3 10 11 18 21 21-3-10-11-18-21-21z'/%3E%3Cpath d='M116 12c-10 3-18 11-21 21 10-3 18-11 21-21z'/%3E%3Cpath d='M128 24c-3 10-11 18-21 21 3-10 11-18 21-21z'/%3E%3Cpath d='M24 128c10-3 18-11 21-21-10 3-18 11-21 21z'/%3E%3Cpath d='M12 116c3-10 11-18 21-21-3 10-11 18-21 21z'/%3E%3Cpath d='M116 128c-10-3-18-11-21-21 10 3 18 11 21 21z'/%3E%3Cpath d='M128 116c-3-10-11-18-21-21 3 10 11 18 21 21z'/%3E%3C/g%3E%3Cg stroke='%230a8f0a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M22 20c12 6 18 12 22 22'/%3E%3Cpath d='M118 20c-12 6-18 12-22 22'/%3E%3Cpath d='M22 120c12-6 18-12 22-22'/%3E%3Cpath d='M118 120c-12-6-18-12-22-22'/%3E%3C/g%3E%3C/svg%3E");
-  pointer-events:none; /* ✅ IMPORTANT so links are clickable */
+  inset:14px;
+  border:3px solid var(--orange);
+  border-radius:15px;
+  pointer-events:none;
   z-index:0;
-  border-radius:14px;
 }
-
-/* ✅ inner border line */
 .page::after{
   content:"";
   position:absolute;
-  inset:28px;
-  border:2px solid rgba(24,179,24,0.35);
+  inset:20px;
+  border:2px solid var(--gold);
   border-radius:12px;
   pointer-events:none;
   z-index:0;
 }
-
-/* soft watermark */
-.watermark{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  pointer-events:none;
-  z-index:0;
-  opacity:0.08;
-}
-.watermark svg{ width:min(420px, 85%); height:auto; }
 
 .top{text-align:center; position:relative; z-index:2;}
 
@@ -198,7 +178,7 @@ body{
   gap:10px;
   flex-wrap:wrap;
   position:relative;
-  z-index:3;
+  z-index:3; /* ✅ buttons on top */
 }
 
 .btn{
@@ -251,8 +231,8 @@ body{
     box-shadow:none;
     overflow:hidden;
   }
-  .page::before{ inset:8mm; border-width:14mm; }
-  .page::after{ inset:14mm; }
+  .page::before{ inset:10mm; }
+  .page::after{ inset:12mm; }
   .actions{ display:none; } /* hide buttons in PDF */
 }
 
@@ -274,19 +254,11 @@ body{
 <body>
 <div class="page" id="card">
 
-  <!-- soft watermark -->
-  <div class="watermark" aria-hidden="true">
-    <svg viewBox="0 0 500 500">
-      <circle cx="250" cy="250" r="200" fill="none" stroke="#18b318" stroke-width="14"/>
-      <circle cx="250" cy="250" r="160" fill="none" stroke="#C0392B" stroke-width="10"/>
-      <text x="250" y="260" text-anchor="middle" font-size="44" font-weight="900" fill="#2E6BD9">శుభం</text>
-    </svg>
-  </div>
-
   <div class="top">
     <div class="mantra">🕉 శ్రీ మహాగణపతయే నమః 🕉</div>
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
 
+    <!-- From your PDF: includes Suprabhatam line -->
     <div class="sloka">
       సూర్యేందు భౌమ బుధ వాక్పతి కావ్యశౌరి సవ్రాభనుకేతు దివిశత్-పరిశత్-ప్రధానాః ।<br>
       తద్దాస్ సదాస చరమావధి దాసదాసాః — <b>శ్రీ వెంకటాచలపతే తవ సుప్రభాతం</b> ॥
@@ -302,6 +274,7 @@ body{
     మృగశిర నక్షత్ర యుక్త ధనుస్సు లగ్నమునందు
   </div>
 
+  <!-- Updated dates as per PDF -->
   <div class="highlight section">
     <b>అనగా:</b> క్రీస్తుశకం <b style="color:var(--red)">25-02-2026</b> బుధవారము<br>
     (తెల్లవారుఝామున / తెల్లవారితే <b style="color:var(--red)">26-02-2026</b> గురువారము)
@@ -322,17 +295,21 @@ body{
     కుటుంబ సభ్యులతో సహా
   </div>
 
+  <!-- Updated full address -->
   <div class="venue">
     📍 A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada
   </div>
 
+  <!-- Clickable actions (no WhatsApp) -->
   <div class="actions">
     <a class="btn orange" href="tel:+919701803169">📞 కాల్ చేయండి</a>
     <a class="btn blue" href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw" target="_blank" rel="noopener">🗺️ మ్యాప్‌లో చూడండి</a>
     <button class="btn gray" type="button" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
   </div>
 
-  <div class="note">మంగళం మహత్ 🙏</div>
+  <div class="note">
+    మంగళం మహత్ 🙏
+  </div>
 
   <div class="blessing">
     🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశీర్వాదమే మా శ్రేయస్సు 🌸
@@ -346,6 +323,7 @@ function copyAddress(){
   navigator.clipboard.writeText(address).then(() => {
     alert("✅ అడ్రస్ కాపీ అయ్యింది!");
   }).catch(() => {
+    // fallback if clipboard blocked
     prompt("Copy this address:", address);
   });
 }
