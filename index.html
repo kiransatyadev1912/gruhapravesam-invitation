@@ -157,13 +157,19 @@ body{
   50%{ transform: translateY(-1px) scale(1.03); }
 }
 
+/* ✅ FIXED TITLE (single line on mobile) */
 .title{
-  font-size:26px;
   font-weight:900;
   color:var(--red);
   position:relative;
   padding:2px 6px;
   text-shadow:0 2px 4px rgba(212,175,55,0.55);
+
+  /* responsive size */
+  font-size: clamp(18px, 4.6vw, 26px);
+
+  /* prevent wrapping */
+  white-space: nowrap;
 }
 
 .title::after{
@@ -349,6 +355,12 @@ body{
   z-index:2;
 }
 
+/* Extra small phones: slightly reduce outer padding (helps title fit better) */
+@media (max-width:380px){
+  .page{ padding:24px 14px; }
+  .title-wrap{ gap:6px; }
+}
+
 /* Print */
 @media print{
   body{background:#fff;padding:0;}
@@ -380,9 +392,7 @@ body{
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
 
     <div class="title-wrap">
-      
       <div class="title">🌺 నూతన గృహప్రవేశ ఆహ్వానం 🌺</div>
-      
     </div>
 
     <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
@@ -481,7 +491,6 @@ function startMusic(){
 }
 
 function toggleMusic(){
-  // If paused -> play, if playing -> pause
   if(music.paused){
     music.volume = 0.25;
     music.play().then(updateMusicBtn).catch(()=>{});
@@ -505,4 +514,3 @@ window.addEventListener("keydown", unlockOnce);
 
 </body>
 </html>
-
