@@ -351,13 +351,13 @@ body{
 
 
   <div class="actions">
-    <a class="btn orange" href="tel:+919701803169">📞 కాల్ చేయండి</a>
+    <a class="btn orange" href="tel:+919701803169">📞 CALL</a>
     <a class="btn blue"
        href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw"
        target="_blank" rel="noopener">
-      🗺️ మ్యాప్‌లో చూడండి
+      🗺️ LOCATION
     </a>
-    <button class="btn gray" type="button" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
+    <button class="btn gray" type="button" onclick="copyAddress()">📌 Copy Address</Address></button>
   </div>
 
   <div class="blessing">
@@ -370,7 +370,7 @@ body{
 function copyAddress(){
   const address = "A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
   navigator.clipboard.writeText(address).then(() => {
-    alert("✅ అడ్రస్ కాపీ అయ్యింది!");
+    alert("✅ Address Copied");
   }).catch(() => {
     prompt("Copy this address:", address);
   });
