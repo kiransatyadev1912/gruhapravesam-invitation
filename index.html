@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="te">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>శుభ గృహప్రవేశ ఆహ్వాన పత్రిక</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800&display=swap');
 
 :root{
+  --leaf:#18b318;
+  --leaf2:#0a8f0a;
   --gold:#D4AF37;
   --orange:#FF6B35;
   --deep:#7A3B14;
   --red:#C0392B;
   --blue:#2E6BD9;
   --green:#1F7A1F;
+  --ink:#2b2b2b;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-
 @page{ size:A4; margin:0; }
 
 body{
@@ -26,49 +28,81 @@ body{
   background: linear-gradient(135deg,#FFD700,#FFA500);
   display:flex;
   justify-content:center;
-  align-items:flex-start;   /* ✅ mobile friendly */
+  align-items:flex-start;
   padding:14px;
   min-height:100vh;
 }
 
-/* ✅ Default: mobile-first (auto height) */
+/* ✅ Mobile-first (show full content) */
 .page{
-  width: min(210mm, 100%);
-  height: auto;                 /* ✅ show full content on mobile */
-  background:#fff;
-  border-radius:20px;
+  width:min(210mm, 100%);
+  height:auto;
+  background: linear-gradient(0deg, rgba(255,255,255,0.97), rgba(255,255,255,0.97));
+  border-radius:18px;
   box-shadow:0 20px 60px rgba(0,0,0,0.25);
-  padding:22px 16px;            /* ✅ mobile padding */
+  padding:22px 16px;
   position:relative;
-  overflow:visible;             /* ✅ do not cut content */
+  overflow:visible;
+  z-index:1;
 }
 
-/* Decorative Borders */
+/* ✅ GREEN LEAF BORDER (matches PDF vibe) */
 .page::before{
   content:"";
   position:absolute;
-  inset:14px;
-  border:3px solid var(--orange);
-  border-radius:15px;
-  pointer-events:none;
+  inset:10px;
+  border: 18px solid transparent;
+  border-image-slice: 30;
+  border-image-repeat: round;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Crect width='140' height='140' fill='white'/%3E%3Cg fill='%2318b318'%3E%3Cpath d='M24 12c10 3 18 11 21 21-10-3-18-11-21-21z'/%3E%3Cpath d='M12 24c3 10 11 18 21 21-3-10-11-18-21-21z'/%3E%3Cpath d='M116 12c-10 3-18 11-21 21 10-3 18-11 21-21z'/%3E%3Cpath d='M128 24c-3 10-11 18-21 21 3-10 11-18 21-21z'/%3E%3Cpath d='M24 128c10-3 18-11 21-21-10 3-18 11-21 21z'/%3E%3Cpath d='M12 116c3-10 11-18 21-21-3 10-11 18-21 21z'/%3E%3Cpath d='M116 128c-10-3-18-11-21-21 10 3 18 11 21 21z'/%3E%3Cpath d='M128 116c-3-10-11-18-21-21 3 10 11 18 21 21z'/%3E%3C/g%3E%3Cg stroke='%230a8f0a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M22 20c12 6 18 12 22 22'/%3E%3Cpath d='M118 20c-12 6-18 12-22 22'/%3E%3Cpath d='M22 120c12-6 18-12 22-22'/%3E%3Cpath d='M118 120c-12-6-18-12-22-22'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none; /* ✅ IMPORTANT so links are clickable */
+  z-index:0;
+  border-radius:14px;
 }
 
+/* ✅ inner border line */
 .page::after{
   content:"";
   position:absolute;
-  inset:20px;
-  border:2px solid var(--gold);
+  inset:28px;
+  border:2px solid rgba(24,179,24,0.35);
   border-radius:12px;
   pointer-events:none;
+  z-index:0;
 }
 
-.top{text-align:center;}
+/* soft watermark */
+.watermark{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.08;
+}
+.watermark svg{ width:min(420px, 85%); height:auto; }
+
+.top{text-align:center; position:relative; z-index:2;}
 
 .mantra{
   font-size:16px;
   font-weight:800;
   color:var(--deep);
   margin-bottom:6px;
+}
+
+.sloka{
+  margin:10px auto 6px;
+  width:95%;
+  font-size:13.5px;
+  line-height:1.7;
+  color:#4b2a15;
+  background: linear-gradient(135deg,#fff7da,#ffe7b8);
+  border-left:6px solid var(--gold);
+  border-radius:12px;
+  padding:10px 12px;
 }
 
 .title{
@@ -82,23 +116,28 @@ body{
   font-size:14px;
   color:#6b3a1c;
   font-weight:700;
+  margin-bottom:6px;
 }
 
 .section{
   margin-top:12px;
   font-size:14.5px;
-  line-height:1.8;
+  line-height:1.85;
   text-align:center;
   color:#333;
+  position:relative;
+  z-index:2;
 }
 
 .highlight{
   margin:12px auto;
-  padding:12px;
+  padding:12px 12px;
   border-left:6px solid var(--orange);
-  background:#fff3e0;
+  background: #fff3e0;
   border-radius:12px;
   width:95%;
+  position:relative;
+  z-index:2;
 }
 
 .muhurta{
@@ -115,6 +154,8 @@ body{
   color:var(--red);
   font-style:italic;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
 
 .host{
@@ -124,8 +165,9 @@ body{
   border:2px solid var(--blue);
   border-radius:12px;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
-
 .host span{
   display:block;
   font-weight:900;
@@ -145,6 +187,8 @@ body{
   color:var(--green);
   font-size:14.5px;
   line-height:1.6;
+  position:relative;
+  z-index:2;
 }
 
 .actions{
@@ -154,7 +198,7 @@ body{
   gap:10px;
   flex-wrap:wrap;
   position:relative;
-  z-index:2;
+  z-index:3;
 }
 
 .btn{
@@ -174,6 +218,16 @@ body{
 .blue{background:var(--blue);}
 .gray{background:#6c757d;}
 
+.note{
+  margin-top:10px;
+  text-align:center;
+  font-size:12.8px;
+  color:#555;
+  font-weight:700;
+  position:relative;
+  z-index:2;
+}
+
 .blessing{
   margin-top:14px;
   text-align:center;
@@ -182,67 +236,82 @@ body{
   color:var(--deep);
   font-style:italic;
   padding-bottom:10px;
+  position:relative;
+  z-index:2;
 }
 
-/* ✅ PRINT/PDF MODE: EXACT A4 ONE PAGE */
+/* ✅ PRINT/PDF MODE: exact A4 one page */
 @media print{
   body{background:#fff;padding:0;align-items:center;}
   .page{
     width:210mm;
-    height:297mm;           /* ✅ A4 fixed */
-    padding:16mm 12mm;      /* ✅ tighter for print */
+    height:297mm;
+    padding:16mm 12mm;
     border-radius:0;
     box-shadow:none;
-    overflow:hidden;        /* ✅ ensure one page */
+    overflow:hidden;
   }
-  .page::before{ inset:10mm; }
-  .page::after{ inset:12mm; }
-  .actions{ display:none; } /* ✅ hide buttons in PDF */
+  .page::before{ inset:8mm; border-width:14mm; }
+  .page::after{ inset:14mm; }
+  .actions{ display:none; } /* hide buttons in PDF */
 }
 
-/* ✅ Desktop/Large screens: keep it looking like a card */
+/* Desktop tune */
 @media (min-width: 768px){
   body{align-items:center;}
-  .page{
-    padding:16mm 12mm;
-  }
-  .mantra{font-size:18px;}
-  .title{font-size:26px;}
-  .subtitle{font-size:16px;}
-  .section{font-size:15.5px;}
-  .muhurta{font-size:18px;}
-  .host span{font-size:17px;}
+  .page{ padding:16mm 12mm; }
+  .mantra{ font-size:18px; }
+  .title{ font-size:26px; }
+  .subtitle{ font-size:16px; }
+  .section{ font-size:15.5px; }
+  .muhurta{ font-size:18px; }
+  .host span{ font-size:17px; }
+  .sloka{ font-size:14px; }
 }
 </style>
 </head>
 
 <body>
+<div class="page" id="card">
 
-<div class="page">
+  <!-- soft watermark -->
+  <div class="watermark" aria-hidden="true">
+    <svg viewBox="0 0 500 500">
+      <circle cx="250" cy="250" r="200" fill="none" stroke="#18b318" stroke-width="14"/>
+      <circle cx="250" cy="250" r="160" fill="none" stroke="#C0392B" stroke-width="10"/>
+      <text x="250" y="260" text-anchor="middle" font-size="44" font-weight="900" fill="#2E6BD9">శుభం</text>
+    </svg>
+  </div>
 
   <div class="top">
     <div class="mantra">🕉 శ్రీ మహాగణపతయే నమః 🕉</div>
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
+
+    <div class="sloka">
+      సూర్యేందు భౌమ బుధ వాక్పతి కావ్యశౌరి సవ్రాభనుకేతు దివిశత్-పరిశత్-ప్రధానాః ।<br>
+      తద్దాస్ సదాస చరమావధి దాసదాసాః — <b>శ్రీ వెంకటాచలపతే తవ సుప్రభాతం</b> ॥
+    </div>
 
     <div class="title">🌺 శుభ గృహప్రవేశ మహోత్సవ ఆహ్వాన పత్రిక 🌺</div>
     <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
   </div>
 
   <div class="section">
-    స్వస్తి శ్రీ చాంద్రమాన శోభకృత్ నామ సంవత్సరే<br>
+    <b>స్వస్తి శ్రీ</b> చాంద్రమాన శోభకృత్ నామ సంవత్సరే<br>
     మాఘ మాసే శుక్ల పక్షే శుభ తిథౌ<br>
     మృగశిర నక్షత్ర యుక్త ధనుస్సు లగ్నమునందు
   </div>
 
   <div class="highlight section">
-    అనగా: క్రీస్తుశకం <b style="color:var(--red)">2026 ఫిబ్రవరి 25</b> బుధవారము<br>
-    (తెల్లవారుజాము – <b style="color:var(--red)">26</b> గురువారము)
-    <span class="muhurta">ఉదయం 3:16 AM శుభ ముహూర్తము</span>
+    <b>అనగా:</b> క్రీస్తుశకం <b style="color:var(--red)">25-02-2026</b> బుధవారము<br>
+    (తెల్లవారుఝామున / తెల్లవారితే <b style="color:var(--red)">26-02-2026</b> గురువారము)
+    <span class="muhurta">శుభ ముహూర్తము: ఉ. గం. 03:16</span>
   </div>
 
   <div class="section">
-    విజయవాడ, <b style="color:var(--orange)">అయ్యప్పనగర్</b> లోని మా నూతన సద్గృహమునందు<br>
-    వేదోక్త విధానములతో భక్తిశ్రద్ధలతో గృహప్రవేశము నిర్వహిస్తున్నాము.
+    విజయవాడ – <b style="color:var(--orange)">అయ్యప్పనగర్</b> లోని<br>
+    మా నూతన సద్గృహమునందు <b style="color:#8B0000;">వేదోక్త విధానములతో భక్తిశ్రద్ధలతో</b><br>
+    గృహప్రవేశ కార్యక్రమము నిర్వహించుటకు దైవానుగ్రహముతో ఏర్పాట్లు చేసియున్నాము.
   </div>
 
   <div class="invite">మీ కుటుంబ సమేతులారా వచ్చి ఆశీర్వదించండి 🙏</div>
@@ -259,9 +328,11 @@ body{
 
   <div class="actions">
     <a class="btn orange" href="tel:+919701803169">📞 కాల్ చేయండి</a>
-    <a class="btn blue" href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw" target="_blank">🗺️ మ్యాప్‌లో చూడండి</a>
-    <button class="btn gray" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
+    <a class="btn blue" href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw" target="_blank" rel="noopener">🗺️ మ్యాప్‌లో చూడండి</a>
+    <button class="btn gray" type="button" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
   </div>
+
+  <div class="note">మంగళం మహత్ 🙏</div>
 
   <div class="blessing">
     🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశీర్వాదమే మా శ్రేయస్సు 🌸
@@ -271,11 +342,11 @@ body{
 
 <script>
 function copyAddress(){
-  const address="A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
-  navigator.clipboard.writeText(address).then(function(){
+  const address = "A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
+  navigator.clipboard.writeText(address).then(() => {
     alert("✅ అడ్రస్ కాపీ అయ్యింది!");
-  }).catch(function(){
-    alert("⚠️ Copy not supported. Please copy manually.");
+  }).catch(() => {
+    prompt("Copy this address:", address);
   });
 }
 </script>
