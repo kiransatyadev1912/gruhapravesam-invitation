@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
 
@@ -15,7 +14,6 @@
   --red:#C0392B;
   --blue:#2E6BD9;
   --green:#1F7A1F;
-
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -31,7 +29,6 @@ body{
   min-height:100vh;
 }
 
-/* PAGE */
 .page{
   width:min(210mm, 100%);
   background: rgba(255,255,255,0.96);
@@ -40,16 +37,18 @@ body{
   padding:22px 16px;
   position:relative;
   overflow:hidden;
+  z-index:1;
 }
 
-/* Decorative Borders */
+/* ✅ Borders should NEVER block clicks */
 .page::before{
   content:"";
   position:absolute;
   inset:14px;
   border:3px solid var(--orange);
   border-radius:15px;
-
+  pointer-events:none;
+  z-index:0;
 }
 .page::after{
   content:"";
@@ -57,16 +56,18 @@ body{
   inset:20px;
   border:2px solid var(--gold);
   border-radius:12px;
+  pointer-events:none;
+  z-index:0;
 }
 
-/* 🌸 CSS Floral Corners */
+/* 🌸 CSS Floral Corners (also must not block clicks) */
 .corner{
   position:absolute;
   width:90px;
   height:90px;
   pointer-events:none;
+  z-index:0;
 }
-
 .corner::before{
   content:"";
   position:absolute;
@@ -75,7 +76,6 @@ body{
   background:radial-gradient(circle at center, #FFD700 0%, #FF6B35 80%);
   border-radius:50%;
 }
-
 .corner::after{
   content:"";
   position:absolute;
@@ -86,20 +86,18 @@ body{
   top:17px;
   left:17px;
 }
-
 .corner.tl{ top:-25px; left:-25px; }
 .corner.tr{ top:-25px; right:-25px; transform:rotate(90deg); }
 .corner.bl{ bottom:-25px; left:-25px; transform:rotate(-90deg); }
 .corner.br{ bottom:-25px; right:-25px; transform:rotate(180deg); }
 
-.top{text-align:center; margin-top:20px;}
+.top{text-align:center; margin-top:20px; position:relative; z-index:2;}
 
 .mantra{
   font-size:16px;
   font-weight:800;
   color:var(--deep);
   margin-bottom:6px;
-
 }
 
 .title{
@@ -122,7 +120,8 @@ body{
   line-height:1.85;
   text-align:center;
   color:#333;
-
+  position:relative;
+  z-index:2;
 }
 
 .highlight{
@@ -132,7 +131,8 @@ body{
   background:#fff3e0;
   border-radius:12px;
   width:95%;
-
+  position:relative;
+  z-index:2;
 }
 
 .muhurta{
@@ -152,6 +152,8 @@ body{
   border-right:6px solid #FF6B35;
   border-radius:14px;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
 
 .vindu-heading{
@@ -172,9 +174,9 @@ body{
   color:var(--red);
   font-style:italic;
   text-align:center;
-
+  position:relative;
+  z-index:2;
 }
-
 
 .host{
   margin-top:14px;
@@ -183,6 +185,8 @@ body{
   border:2px solid var(--blue);
   border-radius:12px;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
 
 .host-heading{
@@ -212,19 +216,20 @@ body{
   color:var(--green);
   font-size:14.5px;
   line-height:1.6;
-
+  position:relative;
+  z-index:2;
 }
 
+/* ✅ Buttons must be on top */
 .actions{
   margin-top:14px;
   display:flex;
   justify-content:center;
   gap:10px;
   flex-wrap:wrap;
-
+  position:relative;
+  z-index:5;
 }
-
-
 
 .btn{
   padding:10px 14px;
@@ -235,14 +240,13 @@ body{
   text-decoration:none;
   border:none;
   cursor:pointer;
-
+  position:relative;
+  z-index:6;
 }
 
 .orange{background:var(--orange);}
 .blue{background:var(--blue);}
 .gray{background:#6c757d;}
-
-
 
 .blessing{
   margin-top:16px;
@@ -251,12 +255,14 @@ body{
   font-weight:900;
   color:var(--deep);
   font-style:italic;
-
+  position:relative;
+  z-index:2;
 }
 
 /* Print */
 @media print{
   body{background:#fff;padding:0;}
+  .actions{ display:none; }
   .page{
     width:210mm;
     height:297mm;
@@ -264,18 +270,13 @@ body{
     border-radius:0;
     box-shadow:none;
   }
-  .actions{ display:none; }
 }
-
-
 </style>
 </head>
 
 <body>
-
 <div class="page" id="card">
 
-  <!-- 🌸 CSS Corners -->
   <div class="corner tl"></div>
   <div class="corner tr"></div>
   <div class="corner bl"></div>
@@ -285,8 +286,6 @@ body{
     <div class="mantra">🕉 శ్రీ మహాగణపతయే నమః 🕉</div>
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
 
-
-    
     <div class="title">🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺</div>
     <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
   </div>
@@ -297,13 +296,10 @@ body{
     మృగశిర నక్షత్రయుక్త ధనుస్సు లగ్నము నందు
   </div>
 
-
   <div class="highlight section">
     <b>అనగా:</b> శుభ తిథి <b style="color:#C0392B">25-02-2026</b> బుధవారము<br>
     (తెల్లవారితే <b style="color:#C0392B">26-02-2026</b> గురువారము)
     <span class="muhurta">శుభ ముహూర్తము: ఉ. గం. 03:16</span>
-
-
   </div>
 
   <div class="vindu-section">
@@ -325,19 +321,19 @@ body{
     మరియు కుటుంబ సభ్యులు
   </div>
 
-
-
   <div class="venue">
     📍 A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada
   </div>
 
-
   <div class="actions">
     <a class="btn orange" href="tel:+919701803169">📞 కాల్ చేయండి</a>
-    <a class="btn blue" href="https://maps.app.goo.gl/">🗺️ మ్యాప్‌లో చూడండి</a>
-    <button class="btn gray" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
+    <a class="btn blue"
+       href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw"
+       target="_blank" rel="noopener">
+      🗺️ మ్యాప్‌లో చూడండి
+    </a>
+    <button class="btn gray" type="button" onclick="copyAddress()">📌 అడ్రస్ కాపీ</button>
   </div>
-
 
   <div class="blessing">
     🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశీర్వాదమే మా శ్రేయస్సు 🌸
@@ -350,9 +346,9 @@ function copyAddress(){
   const address = "A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
   navigator.clipboard.writeText(address).then(() => {
     alert("✅ అడ్రస్ కాపీ అయ్యింది!");
-
+  }).catch(() => {
+    prompt("Copy this address:", address);
   });
-
 }
 </script>
 
