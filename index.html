@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺</title>
+<title>🌺 నూతన గృహప్రవేశ ఆహ్వానం 🌺</title>
 
-<meta property="og:title" content="🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺" />
+<meta property="og:title" content="🌺 నూతన గృహప్రవేశ ఆహ్వానం 🌺" />
 <meta property="og:description" content="25-02-2026 | (తెల్లవారితే 26-02-2026) | విందు: 26-02-2026 మ. 12:00 గం. | విజయవాడ" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kiransatyadev1912.github.io/gruhapravesam-invitation/" />
@@ -49,7 +49,7 @@ body{
   z-index:1;
 }
 
-/* ✅ Subtle watermark (bright, not dark) */
+/* ✅ Subtle watermark (bright) */
 .page .wm{
   position:absolute;
   inset:0;
@@ -137,7 +137,7 @@ body{
   margin-bottom:8px;
 }
 
-/* ✅ Premium title + shine (still bright) */
+/* ✅ Premium title + shine (bright) */
 .title-wrap{
   display:flex;
   align-items:center;
@@ -336,12 +336,7 @@ body{
 .orange{background:linear-gradient(180deg, #FF7A4D, var(--orange));}
 .blue{background:linear-gradient(180deg, #4b86ff, var(--blue));}
 .gray{background:linear-gradient(180deg, #808a93, #6c757d);}
-
-/* Music button */
-.music{
-  background:linear-gradient(180deg, #ffd45e, var(--gold));
-  color:#5a3300;
-}
+.music{background:linear-gradient(180deg, #ffd45e, var(--gold)); color:#5a3300;}
 
 .blessing{
   margin-top:20px;
@@ -365,7 +360,7 @@ body{
     border-radius:0;
     box-shadow:none;
   }
-  .page .wm{ display:none; } /* watermark off in print */
+  .page .wm{ display:none; }
 }
 </style>
 </head>
@@ -385,9 +380,9 @@ body{
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
 
     <div class="title-wrap">
-      <span class="diya">🪔</span>
-      <div class="title">🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺</div>
-      <span class="diya r">🪔</span>
+      
+      <div class="title">🌺 నూతన గృహప్రవేశ ఆహ్వానం 🌺</div>
+      
     </div>
 
     <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
@@ -439,8 +434,7 @@ body{
 
     <button class="btn gray" type="button" onclick="copyAddress()">📌 Copy Address</button>
 
-    <!-- 🎵 Music toggle (optional but very useful) -->
-    <button class="btn music" type="button" onclick="toggleMusic()" id="musicBtn">🔊 Music</button>
+    <button class="btn music" type="button" onclick="toggleMusic()" id="musicBtn">🔊 Play Music</button>
   </div>
 
   <div class="blessing">
@@ -449,10 +443,8 @@ body{
 
 </div>
 
-<!-- ✅ Devotional music file (IMPORTANT):
-     Put "devotional.mp3" in the SAME folder as this index.html
-     Example: gruhapravesam-invitation/devotional.mp3
--->
+<!-- ✅ Devotional music file:
+     Put "devotional.mp3" in SAME folder as index.html -->
 <audio id="bgMusic" loop preload="auto">
   <source src="devotional.mp3" type="audio/mpeg">
 </audio>
@@ -468,35 +460,38 @@ function copyAddress(){
   });
 }
 
-/* ✅ Devotional music (plays on first interaction due to browser rules) */
+/* ✅ Devotional music: autoplay on first interaction (browser rule) + correct toggle */
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 let musicStarted = false;
+
+function updateMusicBtn(){
+  if(music.paused){
+    musicBtn.textContent = "🔊 Play Music";
+  }else{
+    musicBtn.textContent = "🔇 Pause Music";
+  }
+}
 
 function startMusic(){
   if(musicStarted) return;
   musicStarted = true;
   music.volume = 0.25; // soft volume
-  music.play().then(()=>{
-    if(musicBtn) musicBtn.textContent = "🔇 Music";
-  }).catch(()=>{});
+  music.play().then(updateMusicBtn).catch(()=>{});
 }
 
 function toggleMusic(){
-  // ensure we tried at least once
-  if(!musicStarted) startMusic();
-
+  // If paused -> play, if playing -> pause
   if(music.paused){
-    music.play().then(()=>{
-      musicBtn.textContent = "🔇 Music";
-    }).catch(()=>{});
+    music.volume = 0.25;
+    music.play().then(updateMusicBtn).catch(()=>{});
   }else{
     music.pause();
-    musicBtn.textContent = "🔊 Music";
+    updateMusicBtn();
   }
 }
 
-/* Auto-start music on first touch/scroll/key press */
+/* Auto-start on first user interaction */
 function unlockOnce(){
   startMusic();
   window.removeEventListener("pointerdown", unlockOnce);
