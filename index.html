@@ -10,7 +10,6 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kiransatyadev1912.github.io/gruhapravesam-invitation/" />
 <meta property="og:image" content="https://kiransatyadev1912.github.io/gruhapravesam-invitation/preview.jpg" />
-
 <meta name="twitter:card" content="summary_large_image" />
 
 <style>
@@ -23,6 +22,7 @@
   --red:#C0392B;
   --blue:#2E6BD9;
   --green:#1F7A1F;
+  --ink:#2b2b2b;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -40,13 +40,41 @@ body{
 
 .page{
   width:min(210mm, 100%);
-  background: rgba(255,255,255,0.96);
-  border-radius:20px;
+  background: rgba(255,255,255,0.97);
+  border-radius:22px;
   box-shadow:0 20px 60px rgba(0,0,0,0.25);
-  padding:22px 16px;
+  padding:26px 18px;
   position:relative;
   overflow:hidden;
   z-index:1;
+}
+
+/* ✅ Subtle watermark (bright, not dark) */
+.page .wm{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.10;
+  background-repeat:no-repeat;
+  background-position:center 52%;
+  background-size:min(520px, 92%);
+  background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'>\
+<defs>\
+<radialGradient id='g' cx='50%25' cy='50%25' r='55%25'>\
+<stop offset='0%25' stop-color='%23FFD700' stop-opacity='0.70'/>\
+<stop offset='65%25' stop-color='%23FF6B35' stop-opacity='0.30'/>\
+<stop offset='100%25' stop-color='%23C0392B' stop-opacity='0.12'/>\
+</radialGradient>\
+</defs>\
+<circle cx='300' cy='300' r='220' fill='none' stroke='%23D4AF37' stroke-width='6' stroke-dasharray='6 10'/>\
+<circle cx='300' cy='300' r='170' fill='none' stroke='%23FF6B35' stroke-width='5' stroke-dasharray='10 14'/>\
+<circle cx='300' cy='300' r='120' fill='none' stroke='%237A3B14' stroke-width='4' stroke-dasharray='4 10'/>\
+<path d='M300 160 C250 210 260 250 300 280 C340 250 350 210 300 160Z' fill='url(%23g)'/>\
+<path d='M240 340 C260 300 340 300 360 340 C340 350 260 350 240 340Z' fill='%23D4AF37'/>\
+<path d='M220 350 C240 410 360 410 380 350 C350 365 250 365 220 350Z' fill='%23FF6B35'/>\
+</svg>");
 }
 
 /* ✅ Borders should NEVER block clicks */
@@ -55,21 +83,21 @@ body{
   position:absolute;
   inset:14px;
   border:3px solid var(--orange);
-  border-radius:15px;
+  border-radius:18px;
   pointer-events:none;
   z-index:0;
 }
 .page::after{
   content:"";
   position:absolute;
-  inset:20px;
+  inset:22px;
   border:2px solid var(--gold);
-  border-radius:12px;
+  border-radius:14px;
   pointer-events:none;
   z-index:0;
 }
 
-/* 🌸 CSS Floral Corners (also must not block clicks) */
+/* 🌸 Floral Corners (must not block clicks) */
 .corner{
   position:absolute;
   width:90px;
@@ -106,27 +134,68 @@ body{
   font-size:16px;
   font-weight:800;
   color:var(--deep);
-  margin-bottom:6px;
+  margin-bottom:8px;
+}
+
+/* ✅ Premium title + shine (still bright) */
+.title-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:12px 0 6px;
+}
+.diya{
+  font-size:22px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
+  animation: flicker 1.6s infinite ease-in-out;
+}
+.diya.r{ animation-delay:.25s; }
+
+@keyframes flicker{
+  0%,100%{ transform: translateY(0) scale(1); }
+  50%{ transform: translateY(-1px) scale(1.03); }
 }
 
 .title{
-  font-size:22px;
+  font-size:26px;
   font-weight:900;
   color:var(--red);
-  margin:10px 0 6px;
+  position:relative;
+  padding:2px 6px;
+  text-shadow:0 2px 4px rgba(212,175,55,0.55);
+}
+
+.title::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-40%;
+  width:40%;
+  height:100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.75) 45%, transparent 80%);
+  transform: skewX(-18deg);
+  animation: shine 2.8s infinite;
+  pointer-events:none;
+  opacity:0.9;
+}
+@keyframes shine{
+  0%{ left:-40%; }
+  55%{ left:110%; }
+  100%{ left:110%; }
 }
 
 .subtitle{
-  font-size:14px;
+  font-size:14.5px;
   color:#6b3a1c;
   font-weight:700;
   margin-bottom:6px;
 }
 
 .section{
-  margin-top:14px;
-  font-size:14.5px;
-  line-height:1.85;
+  margin-top:16px;
+  font-size:15px;
+  line-height:1.9;
   text-align:center;
   color:#333;
   position:relative;
@@ -134,51 +203,53 @@ body{
 }
 
 .highlight{
-  margin:14px auto;
-  padding:12px;
+  margin:16px auto;
+  padding:14px;
   border-left:6px solid var(--orange);
   background:#fff3e0;
-  border-radius:12px;
+  border-radius:14px;
   width:95%;
   position:relative;
   z-index:2;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 .muhurta{
   font-weight:900;
-  font-size:16px;
+  font-size:17px;
   color:#b07d00;
   display:block;
-  margin-top:6px;
+  margin-top:8px;
 }
 
 .vindu-section{
-  margin:18px auto;
-  padding:16px;
-  width:85%;
+  margin:20px auto;
+  padding:18px;
+  width:86%;
   background:linear-gradient(135deg,#fff8e6,#ffe0b3);
   border-left:6px solid #FF6B35;
   border-right:6px solid #FF6B35;
-  border-radius:14px;
+  border-radius:16px;
   text-align:center;
   position:relative;
   z-index:2;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
 }
 
 .vindu-heading{
-  font-size:18px;
+  font-size:20px;
   font-weight:900;
   color:#C0392B;
 }
 
 .vindu-time{
-  font-size:17px;
-  font-weight:800;
+  font-size:18px;
+  font-weight:900;
   color:#8B0000;
 }
 
 .invite{
-  margin-top:12px;
+  margin-top:14px;
   font-weight:800;
   color:var(--red);
   font-style:italic;
@@ -188,63 +259,62 @@ body{
 }
 
 .host{
-  margin-top:14px;
-  padding:12px;
+  margin-top:16px;
+  padding:14px;
   background:#f0f8ff;
   border:2px solid var(--blue);
-  border-radius:12px;
+  border-radius:14px;
   text-align:center;
   position:relative;
   z-index:2;
+  box-shadow:0 10px 25px rgba(0,0,0,0.06);
 }
 
 .host-heading{
   font-size:18px;
   font-weight:900;
   color:#1c4fb8;
-  margin-bottom:8px;
+  margin-bottom:10px;
   text-decoration:underline;
 }
 
 .host span{
   display:block;
   font-weight:900;
-  font-size:15.5px;
+  font-size:16px;
   color:var(--blue);
-  margin:6px 0;
+  margin:8px 0;
 }
 
 .venue{
-  margin-top:14px;
-  padding:10px;
+  margin-top:16px;
+  padding:12px;
   background:#e6ffe6;
   border:2px solid var(--green);
-  border-radius:12px;
+  border-radius:14px;
   text-align:center;
   font-weight:900;
   color:var(--green);
-  font-size:14.5px;
-  line-height:1.6;
+  font-size:15px;
+  line-height:1.7;
   position:relative;
   z-index:2;
 }
 
 /* ✅ Buttons must be on top */
 .actions{
-  margin-top:14px;
+  margin-top:16px;
   display:flex;
   justify-content:center;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
   position:relative;
   z-index:5;
 }
 
-
-
 .btn{
-  padding:10px 14px;
-  border-radius:10px;
+  padding:11px 16px;
+  border-radius:12px;
   font-weight:900;
   font-size:14px;
   color:#fff;
@@ -253,18 +323,30 @@ body{
   cursor:pointer;
   position:relative;
   z-index:6;
+  box-shadow:0 10px 22px rgba(0,0,0,0.15);
+  transform:translateY(0);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(0,0,0,0.20);
+  filter:saturate(1.05);
 }
 
-.orange{background:var(--orange);}
-.blue{background:var(--blue);}
-.gray{background:#6c757d;}
+.orange{background:linear-gradient(180deg, #FF7A4D, var(--orange));}
+.blue{background:linear-gradient(180deg, #4b86ff, var(--blue));}
+.gray{background:linear-gradient(180deg, #808a93, #6c757d);}
 
-
+/* Music button */
+.music{
+  background:linear-gradient(180deg, #ffd45e, var(--gold));
+  color:#5a3300;
+}
 
 .blessing{
-  margin-top:16px;
+  margin-top:20px;
   text-align:center;
-  font-size:16px;
+  font-size:17px;
   font-weight:900;
   color:var(--deep);
   font-style:italic;
@@ -283,18 +365,15 @@ body{
     border-radius:0;
     box-shadow:none;
   }
-
+  .page .wm{ display:none; } /* watermark off in print */
 }
-
-
-
 </style>
 </head>
 
 <body>
 
 <div class="page" id="card">
-
+  <div class="wm" aria-hidden="true"></div>
 
   <div class="corner tl"></div>
   <div class="corner tr"></div>
@@ -305,7 +384,12 @@ body{
     <div class="mantra">🕉 శ్రీ మహాగణపతయే నమః 🕉</div>
     <div class="mantra">🕉 శ్రీ వెంకటేశ్వర స్వామి చరణౌ శరణం ప్రపద్యే 🕉</div>
 
-    <div class="title">🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺</div>
+    <div class="title-wrap">
+      <span class="diya">🪔</span>
+      <div class="title">🌺 నూతన గృహ ప్రవేశ ఆహ్వానం 🌺</div>
+      <span class="diya r">🪔</span>
+    </div>
+
     <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
   </div>
 
@@ -315,12 +399,10 @@ body{
     మృగశిర నక్షత్రయుక్త ధనుస్సు లగ్నము నందు
   </div>
 
-
   <div class="highlight section">
     <b>అనగా:</b> శుభ తిథి <b style="color:#C0392B">25-02-2026</b> బుధవారము<br>
     (తెల్లవారితే <b style="color:#C0392B">26-02-2026</b> గురువారము)
     <span class="muhurta">శుభ ముహూర్తము: ఉ. గం. 03:16</span>
-
   </div>
 
   <div class="vindu-section">
@@ -340,24 +422,25 @@ body{
     <span>శ్రీ నల్లమోతు వెంకట శ్రీనివాసరావు</span>
     <span>శ్రీమతి శ్రీ రాజ రాజేశ్వరి</span>
     మరియు కుటుంబ సభ్యులు
-
   </div>
-
-
 
   <div class="venue">
     📍 A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada
   </div>
 
-
   <div class="actions">
     <a class="btn orange" href="tel:+919701803169">📞 CALL</a>
+
     <a class="btn blue"
        href="https://maps.app.goo.gl/pLMQ2WBG6L7wbTMA9?g_st=aw"
        target="_blank" rel="noopener">
       🗺️ LOCATION
     </a>
-    <button class="btn gray" type="button" onclick="copyAddress()">📌 Copy Address</Address></button>
+
+    <button class="btn gray" type="button" onclick="copyAddress()">📌 Copy Address</button>
+
+    <!-- 🎵 Music toggle (optional but very useful) -->
+    <button class="btn music" type="button" onclick="toggleMusic()" id="musicBtn">🔊 Music</button>
   </div>
 
   <div class="blessing">
@@ -366,7 +449,16 @@ body{
 
 </div>
 
+<!-- ✅ Devotional music file (IMPORTANT):
+     Put "devotional.mp3" in the SAME folder as this index.html
+     Example: gruhapravesam-invitation/devotional.mp3
+-->
+<audio id="bgMusic" loop preload="auto">
+  <source src="devotional.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+/* ✅ Copy Address */
 function copyAddress(){
   const address = "A-315, Sri Bhaskara Homes, 5th Lane, Ayyappa Nagar, Vijayawada";
   navigator.clipboard.writeText(address).then(() => {
@@ -374,8 +466,46 @@ function copyAddress(){
   }).catch(() => {
     prompt("Copy this address:", address);
   });
-
 }
+
+/* ✅ Devotional music (plays on first interaction due to browser rules) */
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+let musicStarted = false;
+
+function startMusic(){
+  if(musicStarted) return;
+  musicStarted = true;
+  music.volume = 0.25; // soft volume
+  music.play().then(()=>{
+    if(musicBtn) musicBtn.textContent = "🔇 Music";
+  }).catch(()=>{});
+}
+
+function toggleMusic(){
+  // ensure we tried at least once
+  if(!musicStarted) startMusic();
+
+  if(music.paused){
+    music.play().then(()=>{
+      musicBtn.textContent = "🔇 Music";
+    }).catch(()=>{});
+  }else{
+    music.pause();
+    musicBtn.textContent = "🔊 Music";
+  }
+}
+
+/* Auto-start music on first touch/scroll/key press */
+function unlockOnce(){
+  startMusic();
+  window.removeEventListener("pointerdown", unlockOnce);
+  window.removeEventListener("scroll", unlockOnce);
+  window.removeEventListener("keydown", unlockOnce);
+}
+window.addEventListener("pointerdown", unlockOnce, {passive:true});
+window.addEventListener("scroll", unlockOnce, {passive:true});
+window.addEventListener("keydown", unlockOnce);
 </script>
 
 </body>
