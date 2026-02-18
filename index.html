@@ -145,17 +145,6 @@ body{
   gap:10px;
   margin:12px 0 6px;
 }
-.diya{
-  font-size:22px;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
-  animation: flicker 1.6s infinite ease-in-out;
-}
-.diya.r{ animation-delay:.25s; }
-
-@keyframes flicker{
-  0%,100%{ transform: translateY(0) scale(1); }
-  50%{ transform: translateY(-1px) scale(1.03); }
-}
 
 /* ✅ FIXED TITLE (single line on mobile) */
 .title{
@@ -164,11 +153,7 @@ body{
   position:relative;
   padding:2px 6px;
   text-shadow:0 2px 4px rgba(212,175,55,0.55);
-
-  /* responsive size */
   font-size: clamp(18px, 4.6vw, 26px);
-
-  /* prevent wrapping */
   white-space: nowrap;
 }
 
@@ -189,13 +174,6 @@ body{
   0%{ left:-40%; }
   55%{ left:110%; }
   100%{ left:110%; }
-}
-
-.subtitle{
-  font-size:14.5px;
-  color:#6b3a1c;
-  font-weight:700;
-  margin-bottom:6px;
 }
 
 .section{
@@ -228,6 +206,38 @@ body{
   margin-top:8px;
 }
 
+/* ✅ Programs box */
+/* ✅ కార్యక్రమాలు — same theme as విందు */
+.puja-section{
+  margin:20px auto;
+  padding:18px;
+  width:86%;
+  background:linear-gradient(135deg,#fff8e6,#ffe0b3);
+  border-left:6px solid #FF6B35;
+  border-right:6px solid #FF6B35;
+  border-radius:16px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+.puja-heading{
+  font-size:20px;
+  font-weight:900;
+  color:#C0392B;
+  margin-bottom:8px;
+}
+
+.puja-text{
+  font-size:16px;
+  font-weight:800;
+  color:#8B0000;
+  line-height:1.8;
+}
+
+
+/* ✅ Vindu box */
 .vindu-section{
   margin:20px auto;
   padding:18px;
@@ -254,16 +264,7 @@ body{
   color:#8B0000;
 }
 
-.invite{
-  margin-top:14px;
-  font-weight:800;
-  color:var(--red);
-  font-style:italic;
-  text-align:center;
-  position:relative;
-  z-index:2;
-}
-
+/* Hosts */
 .host{
   margin-top:16px;
   padding:14px;
@@ -279,7 +280,7 @@ body{
 .host-heading{
   font-size:20px;
   font-weight:900;
-  color:#7A3B14;            /* deep traditional */
+  color:#7A3B14;
   margin-bottom:12px;
   letter-spacing:0.5px;
   text-decoration:none;
@@ -295,18 +296,6 @@ body{
   background:linear-gradient(90deg, transparent, #D4AF37, transparent);
   border-radius:6px;
 }
-
-
-.host-heading::after{
-  content:"";
-  display:block;
-  width:70%;
-  height:3px;
-  margin:6px auto 0;
-  background:linear-gradient(90deg,transparent,#D4AF37,transparent);
-  border-radius:5px;
-}
-
 
 .host span{
   display:block;
@@ -379,7 +368,7 @@ body{
   z-index:2;
 }
 
-/* Extra small phones: slightly reduce outer padding (helps title fit better) */
+/* Extra small phones */
 @media (max-width:380px){
   .page{ padding:24px 14px; }
   .title-wrap{ gap:6px; }
@@ -418,8 +407,6 @@ body{
     <div class="title-wrap">
       <div class="title">🌺 నూతన గృహప్రవేశ ఆహ్వానం 🌺</div>
     </div>
-
-    <div class="subtitle">మీ ఆశీర్వాదాలతో మా నూతన గృహం సుభిక్షంగా ఉండాలని కోరుకుంటూ…</div>
   </div>
 
   <div class="section">
@@ -434,6 +421,14 @@ body{
     <span class="muhurta">శుభ ముహూర్తము: ఉ. గం. 03:16 ని.లకు</span>
   </div>
 
+  <div class="puja-section">
+    <div class="puja-heading">కార్యక్రమాలు</div>
+    <div class="puja-text">
+      వాస్తుపూజ, హోమం,<br>
+      రమాసహిత సత్యదేవుని వ్రతము
+    </div>
+  </div>
+
   <div class="vindu-section">
     <div class="vindu-heading">🍽️ విందు 🍽️</div>
     <div>తేదీ: 26-02-2026 (గురువారము)</div>
@@ -441,10 +436,8 @@ body{
   </div>
 
   <div class="section">
-    విజయవాడ – అయ్యప్పనగర్ లోని మా నూతన స్వగృహమునందు వేదోక్త విధానములతో గృహప్రవేశ కార్యక్రమము నిర్వహించుటకు ఏర్పాట్లు చేసియున్నాము.
+    కావున మీరందరూ సకుటుంబ సపరివార సమేతముగా మా నూతన గృహమునకు విచ్చేసి, మదర్పిత చందనతాంబూలాదులు స్వీకరించి, మీ అమూల్యమైన ఆశీర్వాదము మాకందించవలసినదిగా మా విన్నపము
   </div>
-
-  <div class="invite">మీ కుటుంబ సమేతంగా వచ్చి ఆశీర్వదించండి 🙏</div>
 
   <div class="host">
     <div class="host-heading">ఆహ్వానించువారు</div>
@@ -467,14 +460,12 @@ body{
     </a>
 
     <button class="btn gray" type="button" onclick="copyAddress()">📌 Copy Address</button>
-
     <button class="btn music" type="button" onclick="toggleMusic()" id="musicBtn">🔊 Play Music</button>
   </div>
 
   <div class="blessing">
-    🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశీర్వాదమే మా శ్రేయస్సు 🌸
+    🌸 మీ రాక మాకు మహాభాగ్యం — మీ ఆశిస్సులే  మాకు శ్రేయస్సులు 🌸
   </div>
-
 </div>
 
 <!-- ✅ Devotional music file:
@@ -500,11 +491,7 @@ const musicBtn = document.getElementById("musicBtn");
 let musicStarted = false;
 
 function updateMusicBtn(){
-  if(music.paused){
-    musicBtn.textContent = "🔊 Play Music";
-  }else{
-    musicBtn.textContent = "🔇 Pause Music";
-  }
+  musicBtn.textContent = music.paused ? "🔊 Play Music" : "🔇 Pause Music";
 }
 
 function startMusic(){
